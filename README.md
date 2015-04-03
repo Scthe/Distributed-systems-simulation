@@ -7,9 +7,8 @@ Simulation presenting message failures in distributed system.
 
 1. run `npm install`
 2. run `bower install`
-3. run `grunt install`
-4. `grunt`
-5. go to [http://localhost:9000/](http://localhost:9000/)
+3. `grunt`
+4. go to [http://localhost:9000/](http://localhost:9000/)
 
 ## Picture
 
