@@ -1,0 +1,45 @@
+// bower:scss
+// endbower
+
+// layout
+$nav-bar-height: 80px;
+
+// colors
+$accent: #A149CD;
+
+ul, menu, dir {
+	list-style-type: none;
+	padding-left: 0px;
+}
+
+@import 'utils';
+@import 'theme';
+@import 'graph';
+
+
+.header-panel{
+  height: $nav-bar-height;
+  position: relative;
+  z-index: 3;
+}
+
+.accented{
+	background-color: $accent !important
+}
+.btn-accented{
+	@extend .accented;
+	@extend .text-white;
+}
+
+
+.debug{
+	/*border: 1px solid red;*/
+}
+
+.raiseable {
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 6px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/*.raiseable:hover {*/
+  /*box-shadow: 0 6px 10px rgba(0, 0, 0, 0.23), 0 10px 30px rgba(0, 0, 0, 0.19);*/
+/*}*/

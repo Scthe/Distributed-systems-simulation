@@ -1,0 +1,52 @@
+
+.node-bg {
+  fill: $accent;
+}
+.node-bg:hover {
+  cursor: pointer;
+  opacity: 0.5;
+
+}
+.node-text {
+  font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  fill: white;
+  font-size: 25px;
+  baseline-shift: -8px;
+  cursor: pointer;
+}
+
+.node:hover {
+  /*fill: #f00;*/
+}
+
+.link-ok{
+  stroke: $accent;
+}
+.link-fail{
+  stroke: black;
+  opacity: 0.1;
+}
+.link {
+  stroke-width: 5;
+  fill: none;
+  pointer-events: none;
+  /*https://css-tricks.com/svg-line-animation-works/*/
+  stroke-dasharray: 10;
+  animation: dash 5s infinite linear;
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: 300;
+  }
+}
+
+/*.node--source,*/
+/*.node--target {*/
+  /*font-weight: 700;*/
+/*}*/
+
+/*.link--source,*/
+/*.link--target {*/
+  /*stroke-opacity: 1;*/
+  /*stroke-width: 2px;*/
+/*}*/

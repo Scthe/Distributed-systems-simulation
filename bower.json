@@ -1,0 +1,14 @@
+{
+  "name": "node",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "underscore": "~1.6.0",
+    "bootstrap": "~3.3.2",
+    "nouislider": "~7.0.10",
+    "bootstrap-material-design": "~0.3.0",
+    "d3": "~3.5.5"
+  },
+  "devDependencies": {},
+  "appPath": "app"
+}
