@@ -1,29 +1,18 @@
-// Generated on 2014-06-18 using generator-webapp 0.4.9
-'use strict';
+/*global module, require*/ // node stuff
 
 module.exports = function(grunt) {
+    'use strict';
 
-    // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
-
-    // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
 
-    grunt.loadNpmTasks('grunt-contrib-jade');
-
-    // Configurable paths
     var config = {
         app: 'app',
         dist: 'dist'
     };
 
-    // Define the configuration for all the tasks
     grunt.initConfig({
-
-        // Project settings
         config: config,
-
-        // Watches files for changes and runs tasks based on the changed files
         watch: {
             bower: {
                 files: ['bower.json'],
@@ -31,13 +20,13 @@ module.exports = function(grunt) {
             },
             js: {
                 files: ['<%= config.app %>/scripts/{,*/}*.js'],
-                // tasks: ['jshint'],
-                options: {
-                    livereload: true
-                }
+                tasks: ['jshint']
             },
             gruntfile: {
-                files: ['Gruntfile.js']
+                files: ['Gruntfile.js'],
+                options: {
+                    reload: true
+                }
             },
             sass: {
                 files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
@@ -48,35 +37,25 @@ module.exports = function(grunt) {
                 tasks: ['newer:copy:styles', 'autoprefixer']
             },
             jade: {
-                files: ['<%= config.app %>/{,*/}*.jade',
-                        '<%= config.app %>/**/{,*/}*.jade'],
-                tasks: ['jade'],
-                options: {
-                    livereload: true
-                }
+                files: '<%= config.app %>/{,*/}*.jade',
+                tasks: ['jade']
             },
             livereload: {
-                options: {
-                    livereload: '<%= connect.options.livereload %>'
-                },
                 files: [
-                    '<%= config.app %>/{,*/}*.html',
                     '.tmp/styles/{,*/}*.css',
-                    // '.tmp/templates/**/{,*/}*.html',
                     '.tmp/**/{,*/}*.html',
                     '<%= config.app %>/images/{,*/}*'
-                ]
+                ],
+                options: {
+                    livereload: '<%= connect.options.livereload %>'
+                }
             }
-
         },
-
-        // The actual grunt server settings
         connect: {
             options: {
                 port: 9000,
                 open: true,
                 livereload: 35729,
-                // Change this to '0.0.0.0' to access the server from outside
                 hostname: 'localhost'
             },
             livereload: {
@@ -93,12 +72,13 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     base: '<%= config.dist %>',
+                    port: 9005,
+                    open: true,
+                    keepalive:true,
                     livereload: false
                 }
             }
         },
-
-        // Empties folders to start fresh
         clean: {
             dist: {
                 files: [{
@@ -112,8 +92,6 @@ module.exports = function(grunt) {
             },
             server: '.tmp'
         },
-
-        // Make sure code styles are up to par and there are no obvious mistakes
         jshint: {
             options: {
                 jshintrc: '.jshintrc',
@@ -121,12 +99,9 @@ module.exports = function(grunt) {
             },
             all: [
                 'Gruntfile.js',
-                '<%= config.app %>/scripts/{,*/}*.js',
-                '!<%= config.app %>/scripts/vendor/*'
+                '<%= config.app %>/scripts/{,*/}*.js'
             ]
         },
-
-        // Compiles Sass to CSS and generates necessary files if requested
         sass: {
             options: {
                 includePaths: [
@@ -152,8 +127,6 @@ module.exports = function(grunt) {
                 }]
             }
         },
-
-        // Add vendor prefixed styles
         autoprefixer: {
             options: {
                 browsers: ['last 1 version']
@@ -167,19 +140,6 @@ module.exports = function(grunt) {
                 }]
             }
         },
-
-        // Automatically inject Bower components into the HTML file
-        bowerInstall: {
-            app: {
-                src: ['<%= config.app %>/index.html'],
-                exclude: ['bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js']
-            },
-            sass: {
-                src: ['<%= config.app %>/styles/{,*/}*.{scss,sass}']
-            }
-        },
-
-        // Renames files for browser caching purposes
         rev: {
             dist: {
                 files: {
@@ -193,10 +153,9 @@ module.exports = function(grunt) {
                 }
             }
         },
-
-        // Copies remaining files to places other tasks can use
         copy: {
             dist: {
+                // TODO this is not complete
                 files: [{
                     expand: true,
                     dot: true,
@@ -219,6 +178,7 @@ module.exports = function(grunt) {
                 }]
             },
             styles: {
+                // TODO this is not complete
                 expand: true,
                 dot: true,
                 cwd: '<%= config.app %>/styles',
@@ -226,8 +186,6 @@ module.exports = function(grunt) {
                 src: '{,*/}*.css'
             }
         },
-
-        // Run some tasks in parallel to speed up build process
         concurrent: {
             server: [
                 'sass:server',
@@ -263,6 +221,11 @@ module.exports = function(grunt) {
         }
     });
 
+    /** run jshint only on changed file */
+    grunt.event.on('watch', function(action, filepath) {
+        grunt.config('jshint.all.src', filepath);
+    });
+
     grunt.registerTask('default', function(target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'connect:dist:keepalive']);
@@ -276,11 +239,6 @@ module.exports = function(grunt) {
             'connect:livereload',
             'watch'
         ]);
-    });
-
-    grunt.registerTask('server', function(target) {
-        grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-        grunt.task.run([target ? ('serve:' + target) : 'serve']);
     });
 
     grunt.registerTask('build', [
