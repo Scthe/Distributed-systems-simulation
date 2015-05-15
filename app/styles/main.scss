@@ -1,10 +1,12 @@
+$icon-font-path: "/bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+
 // bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "bootstrap-material-design/sass/material.scss";
+@import "bootstrap-material-design/sass/ripples.scss";
 // endbower
 
-// layout
 $nav-bar-height: 80px;
-
-// colors
 $accent: #A149CD;
 
 ul, menu, dir {
@@ -23,17 +25,10 @@ ul, menu, dir {
   z-index: 3;
 }
 
-.accented{
-	background-color: $accent !important
-}
+.accented{ background-color: $accent !important }
 .btn-accented{
 	@extend .accented;
 	@extend .text-white;
-}
-
-
-.debug{
-	/*border: 1px solid red;*/
 }
 
 .raiseable {

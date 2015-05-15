@@ -1,78 +1,62 @@
 //- http://localhost:9000/templates/main.html
 
 doctype html
-html(lang="en" ng-app="myAppApp")
+html(lang="en")
   head
-    title= 'ds'
-    //link( rel="stylesheet", href="../bower_components/ngDialog/css/ngDialog-theme-default.css")
-    link( rel="stylesheet", href="../bower_components/bootstrap/dist/css/bootstrap.css")
-    link( rel="stylesheet", href="../bower_components/bootstrap-material-design/dist/css/material.css")
-    link( rel="stylesheet", href="../bower_components/bootstrap-material-design/dist/css/ripples.css")
-    link( rel="stylesheet", href="../styles/main.css")
+    title= 'Distributed-systems-simulation'
+    link( rel="stylesheet", href="styles/main.css")
 
-  body.light-gray.no-margin
+  body.light-gray.no-margin(style="min-width:600px;")
 
     //- top naviagtion bar
-    .header-panel.shadow-z-2.accented
+    header.header-panel.shadow-z-2.accented
+      .container.huge-paddings-square
+        .row.text-white
+          .col-xs-2
+            h2.std-margin-t Read:
+          .col-xs-4.std-padding-h
+            p Ask all nodes in the cluster for their value. Select the largest.
+          .col-xs-2
+            h2.std-margin-t Write:
+          .col-xs-4.std-padding-h
+            p Propagate new value to all nodes in the cluster.
+
+    section.block-center
       .container
-        .row.text-white.huge-paddings-square
-          // TODO add instructions here
-          // ON READ: abcde\nasdasd ON WRITE: abcdeasds\nasds
-          .col-xs-2
-            span.text-big
-              | Read:
-          .col-xs-4.small-padding-horizontal
-            span
-              | Ask all nodes in the cluster for their value. Select the largest
-          .col-xs-2
-            span.text-big
-              | Write:
-          .col-xs-4.small-padding-horizontal
-            span
-              | Propagate new value to all nodes in the cluster
+        .row
+          // left panel
+          .col-xs-9
+            .d3_graph
 
-    .container.block-center.huge-padding-horizontal
-      .row
-        // right panel
-        .col-xs-9
-          .d3_graph
-        // left panel
-        .col-xs-3.menu.shadow-z-1.inputs
-          div.margin-bottom-huge.margin-top-huge
-            .clearfix
-              span.pull-left(style="line-height: 35px;")
-                | N
-              button.pull-right.btn.btn.fab.btn-fab-mini.btn-raised.btn-material-lightyellow.no-margin.small-paddings-square(id="graph-reload")
-                span.glyphicon.glyphicon-refresh
-              span.pull-right.huge-padding-horizontal(id="N-value" style="line-height: 35px;")
-                | 6
-            div#N.slider.shor.slider-material-orange
-
-          //- div.margin-bottom-huge
-            //- input#R.form-control.floating-label(type="text" data-hint="min #nodes to ask on read" placeholder="R" value="N/2 + 1")
-          //- div.margin-bottom-huge
-            //- input#W.form-control.floating-label(type="text" data-hint="min #nodes to ask on write" placeholder="W" value="N/2 + 1")
-
-          div.margin-bottom-huge.margin-top-huge
-            .clearfix
-              span.pull-left(style="line-height: 35px;")
-                | Msg failure
-              span.pull-right(id="msg-fail-value" style="line-height: 35px;")
-                | 50%
-            div#msg-fail.slider.shor.slider-material-orange
-
-          button.btn.btn-accented.block-center(onclick="read()")
-            | read
-          button.btn.btn-accented.block-center(onclick="ae()")
-            | anti-entropy
-          button.btn.btn-accented.block-center(onclick="graph.clear()")
-            | clear
-          //- button.btn.btn-accented.block-center(onclick="addRandConnection()")
-            //- | add
+          // right panel
+          .col-xs-3.shadow-z-1.inputs
+            // N
+            .huge-margin-b.huge-margin-t
+              .clearfix
+                label.pull-left.font-weight-normal(for="N" style="line-height: 35px;")
+                  | N
+                button#graph-reload.pull-right.btn.btn-fab-mini.btn-raised.no-margin.std-paddings-square(onclick="model.reset()")
+                  span.glyphicon.glyphicon-refresh
+                span#N-value.pull-right.huge-padding-h(style="line-height: 35px;")
+                  | 6
+              div#N.slider.shor.slider-material-purple
+            // Msg failure
+            .huge-margin-b.huge-margin-t
+              .clearfix
+                label.pull-left.font-weight-normal(for="msg-fail" style="line-height: 35px;")
+                  | Msg failure
+                span#msg-fail-value.pull-right(style="line-height: 35px;")
+                  | 50%
+              div#msg-fail.slider.shor.slider-material-purple
+            // buttons
+            button.btn.btn-accented.block-center(onclick="model.read()")
+              | Read
+            button.btn.btn-accented.block-center(onclick="model.ae()")
+              | Anti-entropy
+            button.btn.btn-accented.block-center(onclick="model.graph.clear()")
+              | Clear
 
     //- scripts
-
-    //- libraries
     script( src="../bower_components/underscore/underscore.js")
     script( src="../bower_components/jquery/dist/jquery.js")
     script( src="../bower_components/nouislider/distribute/jquery.nouislider.all.js")
@@ -81,4 +65,3 @@ html(lang="en" ng-app="myAppApp")
     script( src="../bower_components/d3/d3.js")
     script( src="scripts/main_d3.js")
     script( src="scripts/main.js")
-    
