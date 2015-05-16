@@ -22,6 +22,29 @@
 
 .clearfix  { clear: both; }
 
+
+/*
+ * media query utils
+ */
+@mixin media-between($width-from, $width-to) {
+  @media (min-width: #{$width-from}) and (max-width: #{$width-to - 1px}) {
+    @content;
+  }
+}
+
+@mixin media-above($width-from) {
+  @media (min-width: #{$width-from}) {
+    @content;
+  }
+}
+
+@mixin media-below($width-to) {
+  @media (max-width: #{$width-to - 1}) {
+    @content;
+  }
+}
+
+
 /*
  * padding & margins & borders
  */
@@ -46,6 +69,7 @@ $padding-huge: 15px;
 	padding-left: $padding-size;
 	padding-right: $padding-size;
 }
+.no-padding-h { @include padding-horizontal(0px); }
 .std-padding-h { @include padding-horizontal($padding-std); }
 .mid-padding-h { @include padding-horizontal($padding-mid); }
 .huge-padding-h{ @include padding-horizontal($padding-huge); }
@@ -53,15 +77,20 @@ $padding-huge: 15px;
 .mid-paddings-square{ padding: $padding-mid; }
 .huge-paddings-square { padding: $padding-huge; }
 
+@each $sh, $dir in (l,left),(r,right),(t,top),(b,bottom){
+  .std-padding-#{$sh} { padding-#{$dir}: $padding-std  !important; }
+  .mid-padding-#{$sh} { padding-#{$dir}: $padding-mid  !important; }
+  .huge-padding-#{$sh}{ padding-#{$dir}: $padding-huge !important; }
+}
+
 /*
  * margin
  */
 $margin-std: 5px;
 $margin-mid: 12px;
 $margin-huge: 25px;
-.std-margin-b { margin-bottom: $margin-std !important; }
-.mid-margin-b { margin-bottom: $margin-mid !important; }
-.huge-margin-b{ margin-bottom: $margin-huge !important; }
-.std-margin-t { margin-top: $margin-std !important; }
-.mid-margin-t { margin-top: $margin-mid !important; }
-.huge-margin-t{ margin-top: $margin-huge !important; }
+@each $sh, $dir in (l,left),(r,right),(t,top),(b,bottom){
+  .std-margin-#{$sh} { margin-#{$dir}: $margin-std  !important; }
+  .mid-margin-#{$sh} { margin-#{$dir}: $margin-mid  !important; }
+  .huge-margin-#{$sh}{ margin-#{$dir}: $margin-huge !important; }
+}

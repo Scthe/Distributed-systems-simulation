@@ -7,19 +7,17 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/assets/fonts/bootstr
 @import "skeleton/css/skeleton.scss";
 // endbower
 
-$nav-bar-height: 80px;
 $accent: #A149CD;
+$skeleton-width-break-1:400px;
+$skeleton-width-break-2:550px;
+$skeleton-width-break-3:750px;
+$skeleton-width-break-4:1000px;
+$skeleton-width-break-5:1200px;
+
 
 ul, menu, dir {
 	list-style-type: none;
 	padding-left: 0px;
-}
-
-
-.header-panel{
-  height: $nav-bar-height;
-  position: relative;
-  z-index: 3;
 }
 
 .accented{ background-color: $accent !important }
@@ -27,6 +25,10 @@ ul, menu, dir {
 @import 'utils';
 @import 'z_depth';
 @import 'theme';
+
+@import 'header';
+@import 'content-layout';
+
 @import 'range';
 @import 'buttons';
 @import 'graph';

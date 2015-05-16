@@ -6,9 +6,8 @@ html(lang="en")
 
   body.light-gray.no-margin
 
-    //- top naviagtion bar
     header.header-panel.accented.z-depth-2
-      .container.huge-paddings-square
+      .container.huge-padding-t
         .row.text-white
           .two.columns
             h2 Read:
@@ -23,35 +22,36 @@ html(lang="en")
       .container
         .row
           // left panel
-          .three.columns.z-depth-1.no-margins.huge-padding-h(style="min-width:185px")
-            // N
-            .huge-margin-b.huge-margin-t
-              .clearfix
-                label.u-pull-left.font-weight-normal(for="N" style="line-height: 35px;")
-                  | N
-                button#graph-reload.btn.btn-floating.u-pull-right.no-margins.mid-paddings-square(onclick="model.reset()")
-                  img.u-full-width.u-full-height(src="images/reload.png")
-                span#N-value.u-pull-right.huge-padding-h(style="line-height: 35px;")
-                  | 6
-              input#N(type="range" min="5" max="16" value="6" step="1")
-            // Msg failure
-            .huge-margin-b.huge-margin-t
-              .clearfix
-                label.u-pull-left.font-weight-normal(for="msg-fail" style="line-height: 35px;")
-                  | Msg failure
-                span#msg-fail-value.u-pull-right(style="line-height: 35px;")
-                  | 50%
-              input#msg-fail(type="range" min="0" max="100" value="50" step="5")
-            // buttons
-            button.btn.btn-accented.block-center(onclick="model.read()")
-              | Read
-            button.btn.btn-accented.block-center(onclick="model.ae()")
-              | Anti-entropy
-            button.btn.btn-accented.block-center(onclick="model.graph.clear()")
-              | Clear
+          #data-panel.no-margins.z-depth-1
+            #controls
+              // N
+              .huge-margin-b.huge-margin-t
+                .clearfix
+                  label.u-pull-left.font-weight-normal(for="N" style="line-height: 35px;")
+                    | N
+                  button#graph-reload.btn.btn-floating.u-pull-right.no-margins.mid-paddings-square(onclick="model.reset()")
+                    img.u-full-width.u-full-height(src="images/reload.png")
+                  span#N-value.u-pull-right.huge-padding-h(style="line-height: 35px;")
+                    | 6
+                input#N(type="range" min="5" max="16" value="6" step="1")
+              // Msg failure
+              .huge-margin-b.huge-margin-t
+                .clearfix
+                  label.u-pull-left.font-weight-normal(for="msg-fail" style="line-height: 35px;")
+                    | Msg failure
+                  span#msg-fail-value.u-pull-right(style="line-height: 35px;")
+                    | 50%
+                input#msg-fail(type="range" min="0" max="100" value="50" step="5")
+            #buttons
+              button.btn.btn-accented.block-center(onclick="model.read()")
+                | Read
+              button.btn.btn-accented.block-center(onclick="model.ae()")
+                | Anti-entropy
+              button.btn.btn-accented.block-center(onclick="model.graph.clear()")
+                | Clear
           
           // right panel
-          .nine.columns
+          #graph-panel.no-margins
             .d3_graph
           
     //- scripts

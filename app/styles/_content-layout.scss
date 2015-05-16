@@ -1,0 +1,35 @@
+
+$content-break-3:950px;
+
+
+#data-panel{
+
+  @include media-below($skeleton-width-break-2){
+    width: 100%;
+    padding: $padding-std $padding-std $padding-huge $padding-std;
+  }
+
+  @include media-between($skeleton-width-break-2, $content-break-3){
+    padding: 0 0 $padding-huge $padding-huge;
+    /*width: 100%;*/
+
+    & #controls{
+      width: 48%;
+      display: inline-block;
+    }
+
+    & #buttons{
+      width: 48%;
+      display: inline-block;
+      margin-left: $margin-mid;
+    }
+  }
+  
+  
+  @include media-above($content-break-3){
+    width: 22% !important;
+    min-width: 200px;
+    float: left;
+    padding: $padding-huge;
+  }
+}
