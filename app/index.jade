@@ -1,53 +1,47 @@
-//- http://localhost:9000/templates/main.html
-
 doctype html
 html(lang="en")
   head
     title= 'Distributed-systems-simulation'
     link( rel="stylesheet", href="styles/main.css")
 
-  body.light-gray.no-margin(style="min-width:600px;")
+  body.light-gray.no-margin
 
     //- top naviagtion bar
-    header.header-panel.shadow-z-2.accented
+    header.header-panel.accented.z-depth-2
       .container.huge-paddings-square
         .row.text-white
-          .col-xs-2
-            h2.std-margin-t Read:
-          .col-xs-4.std-padding-h
+          .two.columns
+            h2 Read:
+          .four.columns.std-padding-h
             p Ask all nodes in the cluster for their value. Select the largest.
-          .col-xs-2
-            h2.std-margin-t Write:
-          .col-xs-4.std-padding-h
+          .two.columns
+            h2 Write:
+          .four.columns.std-padding-h
             p Propagate new value to all nodes in the cluster.
 
     section.block-center
       .container
         .row
           // left panel
-          .col-xs-9
-            .d3_graph
-
-          // right panel
-          .col-xs-3.shadow-z-1.inputs
+          .three.columns.z-depth-1.no-margins.huge-padding-h(style="min-width:185px")
             // N
             .huge-margin-b.huge-margin-t
               .clearfix
-                label.pull-left.font-weight-normal(for="N" style="line-height: 35px;")
+                label.u-pull-left.font-weight-normal(for="N" style="line-height: 35px;")
                   | N
-                button#graph-reload.pull-right.btn.btn-fab-mini.btn-raised.no-margin.std-paddings-square(onclick="model.reset()")
-                  span.glyphicon.glyphicon-refresh
-                span#N-value.pull-right.huge-padding-h(style="line-height: 35px;")
+                button#graph-reload.btn.btn-floating.u-pull-right.no-margins.mid-paddings-square(onclick="model.reset()")
+                  img.u-full-width.u-full-height(src="images/reload.png")
+                span#N-value.u-pull-right.huge-padding-h(style="line-height: 35px;")
                   | 6
-              div#N.slider.shor.slider-material-purple
+              input#N(type="range" min="5" max="16" value="6" step="1")
             // Msg failure
             .huge-margin-b.huge-margin-t
               .clearfix
-                label.pull-left.font-weight-normal(for="msg-fail" style="line-height: 35px;")
+                label.u-pull-left.font-weight-normal(for="msg-fail" style="line-height: 35px;")
                   | Msg failure
-                span#msg-fail-value.pull-right(style="line-height: 35px;")
+                span#msg-fail-value.u-pull-right(style="line-height: 35px;")
                   | 50%
-              div#msg-fail.slider.shor.slider-material-purple
+              input#msg-fail(type="range" min="0" max="100" value="50" step="5")
             // buttons
             button.btn.btn-accented.block-center(onclick="model.read()")
               | Read
@@ -55,13 +49,14 @@ html(lang="en")
               | Anti-entropy
             button.btn.btn-accented.block-center(onclick="model.graph.clear()")
               | Clear
-
+          
+          // right panel
+          .nine.columns
+            .d3_graph
+          
     //- scripts
     script( src="../bower_components/underscore/underscore.js")
     script( src="../bower_components/jquery/dist/jquery.js")
-    script( src="../bower_components/nouislider/distribute/jquery.nouislider.all.js")
-    script( src="../bower_components/bootstrap-material-design/scripts/ripples.js")
-    script( src="../bower_components/bootstrap-material-design/scripts/material.js")
     script( src="../bower_components/d3/d3.js")
     script( src="scripts/main_d3.js")
     script( src="scripts/main.js")

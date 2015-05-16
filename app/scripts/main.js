@@ -16,42 +16,21 @@ window.model = (function() {
         valueMsgFailText = $('#msg-fail-value'),
         graphHtmlNode = $('.d3_graph'),
         graphSize = 500,
-        initN = 6,
-        initMsgFail = 50,
         initNodeVal = 5;
 
     // init ui
-    $.material.init();
-    sliderN.noUiSlider({
-        start: initN,
-        step: 1,
-        connect: 'lower',
-        range: {
-            min: 5,
-            max: 16
-        }
-    }).on('slide', function() {
+    sliderN.on('mousemove', function() {
         valueNText.text(_Int($(this).val()));
-    }).each(function() {
-        $(this).val(initN);
     });
 
-    sliderMsgFail.noUiSlider({
-        start: initMsgFail,
-        step: 5,
-        connect: 'lower',
-        range: {
-            min: 0,
-            max: 100
-        }
-    }).on('slide', function() {
+    sliderMsgFail.on('mousemove', function() {
         valueMsgFailText.text(_Int($(this).val()) + '%');
-    }).each(function() {
-        $(this).val(initMsgFail);
     });
 
-    reset(initN, graphSize);
+    // draw graph
+    reset();
 
+    // this will serve as a controller
     return {
         nodeClicked: nodeClicked,
         reset: reset,
@@ -70,8 +49,7 @@ window.model = (function() {
     /** part of api */
     function reset(n) {
         if (!n) {
-            reset(sliderN.val());
-            return;
+            n = sliderN.val();
         }
 
         graphHtmlNode.empty();

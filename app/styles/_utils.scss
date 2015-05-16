@@ -1,5 +1,17 @@
 .font-weight-normal{ font-weight: normal; }
 .activable{ cursor: pointer; }
+.no-select{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.u-full-height {
+  height: 100%;
+}
 
 .text-center{ text-align: center; }
 .block-center{
@@ -8,15 +20,17 @@
 	margin-left: auto;
 }
 
+.clearfix  { clear: both; }
+
 /*
  * padding & margins & borders
  */
 .no-padding{ padding: 0px !important; }
-.no-margin{ margin: 0px !important; }
+.no-margins{ margin: 0px !important; }
 .no-borders{ border-style: none; }
 .raw-dim{
 	@extend .no-padding;
-	@extend .no-margin;
+	@extend .no-margins;
 	@extend .no-borders;
 }
 
@@ -36,7 +50,7 @@ $padding-huge: 15px;
 .mid-padding-h { @include padding-horizontal($padding-mid); }
 .huge-padding-h{ @include padding-horizontal($padding-huge); }
 .std-paddings-square  { padding: $padding-std; }
-.small-paddings-square{ padding: $padding-mid; }
+.mid-paddings-square{ padding: $padding-mid; }
 .huge-paddings-square { padding: $padding-huge; }
 
 /*

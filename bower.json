@@ -3,13 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "underscore": "^1.8.3",
-    "bootstrap": "^3.3.4",
-    "nouislider": "^7.0.10",
-    "bootstrap-material-design": "~0.3.0",
     "d3": "^3.5.5",
     "jquery": "~2.1.4",
-    "bootstrap-sass-official": "~3.3.4"
+    "normalize.css": "~3.0.3",
+    "skeleton": "~2.0.4",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {},
   "appPath": "app"

@@ -1,0 +1,33 @@
+$button-floating-size:37px;
+$button-bg-color-disabled:#c8c8c8;
+
+.btn{
+  border: none;
+  transition: all.2s ease-out;
+  @extend .z-depth-1;
+
+  &:hover{
+    @extend .z-depth-4;
+  }
+
+  &.disabled{
+    background-color: $button-bg-color-disabled !important;
+    box-shadow: none;
+    cursor: default;
+
+    &:hover {
+      background-color: $button-bg-color-disabled;
+    }
+  }
+}
+
+.btn-floating {
+  width: $button-floating-size;
+  height: $button-floating-size;
+  line-height: $button-floating-size;
+}
+
+.btn-accented{
+  @extend .accented;
+  @extend .text-white;
+}
