@@ -1,5 +1,5 @@
-/*global d3,_,_Int*/
-'use strict';
+/* global d3,_,_Int,console */
+/* exported graphInit*/
 
 // http://bl.ocks.org/mbostock/7607999
 // http://jsfiddle.net/w2rfwokx/1/
@@ -7,7 +7,7 @@
 // https://groups.google.com/forum/#!topic/d3-js/d2ceKITfTx0
 
 function graphInit(nodeCount, diameter) {
-    /*jshint -W117 */
+    'use strict';
 
     var radius = diameter / 2,
         innerRadius = radius - 50,
@@ -57,7 +57,7 @@ function graphInit(nodeCount, diameter) {
         nodes = cluster.nodes(packageHierarchy(data)),
         links = packageImports(nodes);
 
-    d3.select(self.frameElement).style('height', diameter + 'px');
+    // d3.select(self.frameElement).style('height', diameter + 'px');
     drawNodes();
     update();
 
@@ -144,7 +144,6 @@ function graphInit(nodeCount, diameter) {
             .attr('onclick', onClick);
     }
 
-
     function createNodeData() {
         var data = [];
         for (var i = 0; i < nodeCount; i++) {
@@ -158,7 +157,6 @@ function graphInit(nodeCount, diameter) {
         return data;
     }
 
-    // Lazily construct the package hierarchy from class names.
     function packageHierarchy(classes) {
         classes.forEach(function(d) {
             nodeMap[d.name] = d;
@@ -169,7 +167,6 @@ function graphInit(nodeCount, diameter) {
         return nodeMap[''];
     }
 
-    // Return a list of imports for the given array of nodes.
     function packageImports(nodes) {
         var imports = [];
 
