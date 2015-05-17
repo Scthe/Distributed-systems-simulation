@@ -24,7 +24,6 @@ module.exports = {
             dest: '<%= config.dist %>',
             src: [
                 'images/{,*/}*.*',
-                '{,*/}*.html', // loose html files
                 'styles/fonts/{,*/}*.*', // fonts
                 'styles/main.css',
                 'scripts/main.js'

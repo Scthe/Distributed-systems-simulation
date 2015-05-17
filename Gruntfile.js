@@ -22,13 +22,14 @@ module.exports = function(grunt) {
         connect: require('./grunt/config/connect'),
         copy: require('./grunt/config/copy'),
         cssmin: require('./grunt/config/cssmin'),
+        filerev: require('./grunt/config/filerev'),
+        htmlmin: require('./grunt/config/htmlmin'),
         jade: require('./grunt/config/jade'),
         jshint: require('./grunt/config/jshint'),
-        filerev: require('./grunt/config/filerev'),
         sass: require('./grunt/config/sass'),
         uglify: require('./grunt/config/uglify'),
-        useminPrepare: require('./grunt/config/usemin'),
         usemin: require('./grunt/config/usemin'),
+        useminPrepare: require('./grunt/config/usemin'),
         watch: require('./grunt/config/watch')
     });
 
@@ -77,9 +78,7 @@ module.exports = function(grunt) {
     ]);
 
     /**
-     * TODO uglify
      * TODO rev
-     * TODO htmlmin
      * TODO concurrent
      */
     grunt.registerTask('build', [
@@ -92,8 +91,8 @@ module.exports = function(grunt) {
         'copy:dist',
         // 'filerev',
         // 'dbg',
-        // 'htmlmin',
         'usemin',
+        'htmlmin',
         'copy:moveToDist'
     ]);
 
