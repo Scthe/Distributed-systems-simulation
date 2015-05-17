@@ -12,6 +12,7 @@ window.model = (function() {
     var model,
         sliderN = $('#N'),
         valueNText = $('#N-value'),
+        nRefreshButton = $('#N-refresh-button'),
         sliderMsgFail = $('#msg-fail'),
         valueMsgFailText = $('#msg-fail-value'),
         graphHtmlNode = $('.d3_graph'),
@@ -21,6 +22,7 @@ window.model = (function() {
     // init ui
     sliderN.on('mousemove', function() {
         valueNText.text(_Int($(this).val()));
+        updateRefreshButton();
     });
 
     sliderMsgFail.on('mousemove', function() {
@@ -46,6 +48,16 @@ window.model = (function() {
         model[id] = val;
     }
 
+    /** helper function  */
+    function updateRefreshButton() {
+        var val = _Int(sliderN.val());
+        if (model && val !== model.length) {
+            nRefreshButton.addClass('slowly-rotating');
+        } else {
+            nRefreshButton.removeClass('slowly-rotating');
+        }
+    }
+
     /** part of api */
     function reset(n) {
         if (!n) {
@@ -60,6 +72,7 @@ window.model = (function() {
             graph.set(index, vv);
             return vv;
         });
+        updateRefreshButton();
     }
 
     /** part of api */

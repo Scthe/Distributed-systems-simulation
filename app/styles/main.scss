@@ -17,6 +17,7 @@ ul, menu, dir {
 .accented{ background-color: $accent !important }
 
 @import 'utils';
+@import 'animation';
 @import 'z_depth';
 @import 'theme';
 
