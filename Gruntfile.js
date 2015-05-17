@@ -17,13 +17,18 @@ module.exports = function(grunt) {
         config: config,
         autoprefixer: require('./grunt/config/autoprefixer'),
         clean: require('./grunt/config/clean'),
+        concat: require('./grunt/config/concat'),
         concurrent: require('./grunt/config/concurrent'),
         connect: require('./grunt/config/connect'),
         copy: require('./grunt/config/copy'),
+        cssmin: require('./grunt/config/cssmin'),
         jade: require('./grunt/config/jade'),
         jshint: require('./grunt/config/jshint'),
-        rev: require('./grunt/config/rev'),
+        filerev: require('./grunt/config/filerev'),
         sass: require('./grunt/config/sass'),
+        uglify: require('./grunt/config/uglify'),
+        useminPrepare: require('./grunt/config/usemin'),
+        usemin: require('./grunt/config/usemin'),
         watch: require('./grunt/config/watch')
     });
 
@@ -34,37 +39,59 @@ module.exports = function(grunt) {
     });
 
 
-    grunt.registerTask('default', function(target) {
-        if (target === 'dist') {
-            grunt.task.run(['build', 'connect:dist:keepalive']);
-        } else {
-            grunt.task.run([
-                'clean:server',
-                'copy:CSSLibs',
-                'concurrent:server',
-                'autoprefixer',
-                'jade',
-                'connect:livereload',
-                'watch'
-            ]);
-        }
+    /** livereload */
+    grunt.registerTask('default', function() {
+        grunt.task.run([
+            'clean:server',
+            'copy:CSSLibs',
+            'concurrent:server',
+            'autoprefixer',
+            'jade',
+            'connect:livereload',
+            'watch'
+        ]);
     });
 
-    // grunt.registerTask('build:server', [ // run server and open page
+    /** build page and open it in browser */
+    grunt.registerTask('build:server', ['build', 'connect:dist:keepalive']);
 
+    // grunt.registerTask('dbg', function() {
+    // console.log('hi !');
+    // console.log(grunt.filerev.summary);
+    // });
+
+    /**
+     * 
+     * TODO uglify
+     * TODO rev
+     * TODO htmlmin
+     * TODO concurrent
+     */
     grunt.registerTask('build', [
+        // preparations
         'clean:dist',
+        'jshint',
+        // html
         'jade',
-        // 'useminPrepare',
-        'concurrent:dist',
+        'useminPrepare',
+        // css
+        'copy:CSSLibs',
+        'sass:dist',
+        'copy:styles',
         'autoprefixer',
-        // 'concat',
-        // 'cssmin',
-        // 'uglify',
+        'concat:css',
+        'cssmin:dist',
+        // js
+        'concat:generated',
+        // 'uglify:generated',
+        // other files
         'copy:dist',
-        'rev',
-        // 'usemin',
+        // finalize
+        // 'filerev',
+        // 'dbg',
         // 'htmlmin',
+        'usemin',
+        'copy:moveToDist'
     ]);
 
 };

@@ -2,26 +2,33 @@
 
 module.exports = {
     dist: {
-        // TODO this is not complete
         files: [{
             expand: true,
             dot: true,
             cwd: '<%= config.app %>',
-            dest: '<%= config.dist %>',
+            dest: '.tmp',
             src: [
-                '*.{ico,png,txt}',
-                '.htaccess',
-                'images/{,*/}*.webp',
-                '{,*/}*.html',
-                'styles/fonts/{,*/}*.*',
-                'scripts',
+                '*.{ico,png,txt}', // f.e. favicon
+                'images/{,*/}*.*', // ALL images
+                '{,*/}*.html', // loose html files
+                'styles/fonts/{,*/}*.*' // fonts
             ]
-        }, {
+        }]
+    },
+    moveToDist: {
+        // TODO use rev instead
+        files: [{
             expand: true,
             dot: true,
-            cwd: '.',
-            src: ['bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/*.*'],
-            dest: '<%= config.dist %>'
+            cwd: '.tmp',
+            dest: '<%= config.dist %>',
+            src: [
+                'images/{,*/}*.*',
+                '{,*/}*.html', // loose html files
+                'styles/fonts/{,*/}*.*', // fonts
+                'styles/main.css',
+                'scripts/main.js'
+            ]
         }]
     },
     styles: {

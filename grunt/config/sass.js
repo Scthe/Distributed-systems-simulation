@@ -13,7 +13,7 @@ module.exports = {
             cwd: '<%= config.app %>/styles',
             src: ['*.scss'],
             dest: '.tmp/styles',
-            ext: '.css'
+            ext: '.compiled.css'
         }]
     },
     server: {

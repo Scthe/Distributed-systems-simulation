@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	server: {
+	dist: {
 		files: [{
 			dot: true,
 			src: [
@@ -10,5 +10,5 @@ module.exports = {
 			]
 		}]
 	},
-	dist: '.tmp'
+	server: '.tmp'
 };

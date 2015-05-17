@@ -1,6 +1,7 @@
 doctype html
 html(lang="en")
   head
+    meta(http-equiv="content-type" content="text/html; charset=UTF8")
     title= 'Distributed-systems-simulation'
     link( rel="stylesheet", href="styles/main.css")
 
@@ -55,8 +56,10 @@ html(lang="en")
             .d3_graph
           
     //- scripts
+    //build:js scripts/main.js
     script( src="../bower_components/underscore/underscore.js")
     script( src="../bower_components/jquery/dist/jquery.js")
     script( src="../bower_components/d3/d3.js")
     script( src="scripts/main_d3.js")
     script( src="scripts/main.js")
+    //endbuild
