@@ -1,11 +1,5 @@
-$icon-font-path: "/bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
-
-// bower:scss
-/*@import "normalize.css/normalize.css";*/
-/*@import "skeleton/css/skeleton.css";*/
-@import "normalize.css/normalize.scss";
-@import "skeleton/css/skeleton.scss";
-// endbower
+@import "normalize.scss";
+@import "skeleton.scss";
 
 $accent: #A149CD;
 $skeleton-width-break-1:400px;

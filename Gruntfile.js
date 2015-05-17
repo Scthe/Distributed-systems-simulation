@@ -40,6 +40,7 @@ module.exports = function(grunt) {
         } else {
             grunt.task.run([
                 'clean:server',
+                'copy:CSSLibs',
                 'concurrent:server',
                 'autoprefixer',
                 'jade',

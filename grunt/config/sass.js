@@ -3,7 +3,8 @@
 module.exports = {
     options: {
         includePaths: [
-            'bower_components'
+            'bower_components',
+            '.tmp/styles/vendor'
         ]
     },
     dist: {
