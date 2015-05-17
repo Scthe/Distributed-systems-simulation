@@ -60,33 +60,36 @@ module.exports = function(grunt) {
     // console.log(grunt.filerev.summary);
     // });
 
+    grunt.registerTask('css:dist', [
+        'copy:CSSLibs',
+        'sass:dist',
+        'copy:styles',
+        'autoprefixer',
+        'concat:css',
+        'cssmin:dist'
+    ]);
+
+    grunt.registerTask('js:dist', [
+        'concat:jsDist',
+        'uglify:dist',
+        // or:
+        // 'concat:jsDistAsFinalStep'
+    ]);
+
     /**
-     * 
      * TODO uglify
      * TODO rev
      * TODO htmlmin
      * TODO concurrent
      */
     grunt.registerTask('build', [
-        // preparations
         'clean:dist',
         'jshint',
-        // html
         'jade',
         'useminPrepare',
-        // css
-        'copy:CSSLibs',
-        'sass:dist',
-        'copy:styles',
-        'autoprefixer',
-        'concat:css',
-        'cssmin:dist',
-        // js
-        'concat:generated',
-        // 'uglify:generated',
-        // other files
+        'css:dist',
+        'js:dist',
         'copy:dist',
-        // finalize
         // 'filerev',
         // 'dbg',
         // 'htmlmin',

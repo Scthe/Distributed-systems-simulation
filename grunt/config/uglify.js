@@ -1,17 +1,22 @@
 'use strict';
 
 module.exports = {
-    generated: {
+    options: {
+        report: 'min'
+    },
+    dist: {
         files: [{
-            // dest: '.tmp/js/main.uglify.js',
-            // <%= config.dist %>/scripts/main.js
-            dest: '.tmp/scripts/main.js',
-            src: ['.tmp/scripts/main.concat.js']
+            src: ['.tmp/scripts/main.concat.js'],
+            dest: '.tmp/scripts/main.js'
+        }]
+    },
+    fast: {
+        files: [{
+            src: ['.tmp/scripts/main.concat.js'],
+            dest: '.tmp/scripts/main.js'
         }],
-        options:{
-            compress:false,
-            report: 'min'
-
+        options: {
+            compress: false
         }
     }
 };
