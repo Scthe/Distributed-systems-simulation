@@ -1,29 +1,24 @@
 @import "normalize.scss";
 @import "skeleton.scss";
 
-$accent: #A149CD;
-$skeleton-width-break-1:400px;
-$skeleton-width-break-2:550px;
-$skeleton-width-break-3:750px;
-$skeleton-width-break-4:1000px;
-$skeleton-width-break-5:1200px;
-
+/* some othe irritating defaukts not fixed by above libs*/
+label{ font-weight: normal; }
 
 ul, menu, dir {
 	list-style-type: none;
 	padding-left: 0px;
 }
 
-.accented{ background-color: $accent !important }
 
+
+@import 'variables';
 @import 'utils';
 @import 'animation';
 @import 'z_depth';
-@import 'theme';
+@import 'mixins';
 
-@import 'header';
-@import 'content-layout';
-
-@import 'range';
-@import 'buttons';
-@import 'graph';
+@import 'components/header';
+@import 'components/content-layout';
+@import 'components/range';
+@import 'components/buttons';
+@import 'components/graph';

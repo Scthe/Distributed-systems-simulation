@@ -6,8 +6,8 @@ html(lang="en")
 
   body.light-gray.no-margin
 
-    header.header-panel.accented.z-depth-2
-      .container.huge-padding-t
+    header.accented.z-depth-2
+      .container.header__inner.huge-padding-t
         .row.text-white
           .two.columns
             h2 Read:
@@ -18,15 +18,15 @@ html(lang="en")
           .four.columns.std-padding-h
             p Propagate new value to all nodes in the cluster.
 
-    section.block-center
+    section.u-block-center
       .container
         .row
           // left panel
-          #data-panel.no-margins.z-depth-1
-            #controls
+          .content.no-margins.z-depth-1
+            .content__controls
               // N
               .huge-margin-b.huge-margin-t
-                .clearfix
+                .u-clearfix
                   label.u-pull-left.font-weight-normal(for="N" style="line-height: 35px;")
                     | N
                   button#graph-reload.btn.btn-floating.u-pull-right.no-margins.mid-paddings-square(onclick="model.reset()")
@@ -36,18 +36,18 @@ html(lang="en")
                 input#N(type="range" min="5" max="16" value="6" step="1")
               // Msg failure
               .huge-margin-b.huge-margin-t
-                .clearfix
+                .u-clearfix
                   label.u-pull-left.font-weight-normal(for="msg-fail" style="line-height: 35px;")
                     | Msg failure
                   span#msg-fail-value.u-pull-right(style="line-height: 35px;")
                     | 50%
                 input#msg-fail(type="range" min="0" max="100" value="50" step="5")
-            #buttons
-              button.btn.btn-accented.block-center(onclick="model.read()")
+            .content__buttons
+              button.btn.btn-accented.u-block-center(onclick="model.read()")
                 | Read
-              button.btn.btn-accented.block-center(onclick="model.ae()")
+              button.btn.btn-accented.u-block-center(onclick="model.ae()")
                 | Anti-entropy
-              button.btn.btn-accented.block-center(onclick="model.graph.clear()")
+              button.btn.btn-accented.u-block-center(onclick="model.graph.clear()")
                 | Clear
           
           // right panel

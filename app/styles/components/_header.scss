@@ -1,0 +1,20 @@
+.header__inner{
+
+  @include below-md{
+    padding: 0px 20px;
+  }
+
+  @include md-only{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  @include lg-and-up{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px 20px;
+  }
+
+}

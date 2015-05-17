@@ -1,10 +1,10 @@
-$range-base-color: $accent;
+$range-base-color: $main-color-accent;
 $range-thumb-size: 14px;
 $range-track-color: #c2c0c2;
 $range-track-size: 3px;
 
 input[type=range] {
-  @extend .no-select;
+  @extend .u-no-select;
   position: relative;
   background-color: transparent;
   border: none;

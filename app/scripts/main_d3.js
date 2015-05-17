@@ -39,7 +39,7 @@ function graphInit(nodeCount, diameter) {
     var svgElement = d3.select('.d3_graph').append('svg')
         .attr('width', diameter)
         .attr('height', diameter)
-        .attr('class', 'block-center')
+        .attr('class', 'u-block-center')
         .append('g') // main svg:graphics
         .attr('transform', 'translate(' + radius + ',' + radius + ')');
     // draw shaded circle in background to better visualize cluster

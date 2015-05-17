@@ -1,0 +1,44 @@
+/*
+ * breaks
+ */
+@mixin below-md{
+  @media screen and (max-width: #{$md-screen-width - 1}) {
+    @content;
+  }
+}
+
+@mixin md-only {
+  @media screen and (min-width: $md-screen-width) and (max-width: $lg-screen-width - 1) {
+    @content;
+  }
+}
+
+@mixin lg-and-up {
+  @media screen and (min-width: $lg-screen-width) {
+    @content;
+  }
+}
+
+/*
+ * utils
+ */
+@mixin media-between($width-from, $width-to) {
+  @media screen and (min-width: #{$width-from}) and (max-width: #{$width-to - 1px}) {
+    @content;
+  }
+}
+
+@mixin media-above($width-from) {
+  @media screen and (min-width: #{$width-from}) {
+    @content;
+  }
+}
+
+@mixin media-below($width-to) {
+  @media screen and (max-width: #{$width-to - 1}) {
+    @content;
+  }
+}
+
+
+
