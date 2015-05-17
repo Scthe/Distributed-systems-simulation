@@ -16,18 +16,20 @@ module.exports = {
         }]
     },
     moveToDist: {
-        // TODO use rev instead
         files: [{
             expand: true,
             dot: true,
             cwd: '.tmp',
             dest: '<%= config.dist %>',
             src: [
-                'images/{,*/}*.*',
-                'styles/fonts/{,*/}*.*', // fonts
-                'styles/main.css',
-                'scripts/main.js'
-            ]
+                    'images/{,*/}*.*',
+                    'styles/fonts/{,*/}*.*', // fonts
+                    'styles/main.*.css',
+                    '!styles/main.compiled.css',
+                    '!styles/main.concat.css',
+                    'scripts/main.*.js',
+                    '!scripts/main.concat.js'
+                ]
         }]
     },
     styles: {

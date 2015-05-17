@@ -11,6 +11,6 @@ module.exports = {
             '.tmp/styles/main.css',
             '.tmp/scripts/main.js'
         ],
-        dest: '<%= config.dist %>'
+        // dest: '<%= config.dist %>'
     }
 };

@@ -1,8 +1,11 @@
 'use strict';
 
 module.exports = {
-    options: {},
-    html: {
-        src: ['.tmp/index.html']
-    }
+	options: {
+		assetsDirs: ['.tmp']
+		// assetsDirs: '<%= config.dist %>'
+	},
+	html: {
+		src: ['.tmp/index.html']
+	}
 };

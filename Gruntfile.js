@@ -53,14 +53,6 @@ module.exports = function(grunt) {
         ]);
     });
 
-    /** build page and open it in browser */
-    grunt.registerTask('build:server', ['build', 'connect:dist:keepalive']);
-
-    // grunt.registerTask('dbg', function() {
-    // console.log('hi !');
-    // console.log(grunt.filerev.summary);
-    // });
-
     grunt.registerTask('css:dist', [
         'copy:CSSLibs',
         'sass:dist',
@@ -72,13 +64,15 @@ module.exports = function(grunt) {
 
     grunt.registerTask('js:dist', [
         'concat:jsDist',
-        'uglify:dist',
+        'uglify:dist'
         // or:
         // 'concat:jsDistAsFinalStep'
     ]);
 
+    /** build page and open it in browser */
+    grunt.registerTask('build:server', ['build', 'connect:dist:keepalive']);
+
     /**
-     * TODO rev
      * TODO concurrent
      */
     grunt.registerTask('build', [
@@ -89,8 +83,7 @@ module.exports = function(grunt) {
         'css:dist',
         'js:dist',
         'copy:dist',
-        // 'filerev',
-        // 'dbg',
+        'filerev',
         'usemin',
         'htmlmin',
         'copy:moveToDist'
