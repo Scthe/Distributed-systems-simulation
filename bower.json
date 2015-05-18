@@ -1,13 +1,13 @@
 {
-  "name": "node",
+  "name": "Distributed-systems-simulation",
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "underscore": "~1.6.0",
-    "bootstrap": "~3.3.2",
-    "nouislider": "~7.0.10",
-    "bootstrap-material-design": "~0.3.0",
-    "d3": "~3.5.5"
+    "d3": "^3.5.5",
+    "jquery": "~2.1.4",
+    "normalize.css": "~3.0.3",
+    "skeleton": "~2.0.4",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {},
   "appPath": "app"

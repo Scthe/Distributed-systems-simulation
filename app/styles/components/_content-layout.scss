@@ -1,0 +1,31 @@
+.content{
+
+  @include below-md{
+    width: 100%;
+    padding: $padding-std $padding-std $padding-huge $padding-std;
+  }
+
+  @include media-between($md-screen-width, $xl-screen-width){
+    padding: 0 0 $padding-huge $padding-huge;
+    /*width: 100%;*/
+
+    & .content__controls{
+      width: 48%;
+      display: inline-block;
+    }
+
+    & .content__buttons{
+      width: 48%;
+      display: inline-block;
+      margin-left: $margin-mid;
+    }
+  }
+  
+  
+  @include media-above($xl-screen-width){
+    width: 22% !important;
+    min-width: 200px;
+    float: left;
+    padding: $padding-huge;
+  }
+}

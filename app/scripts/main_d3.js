@@ -1,5 +1,5 @@
-/*global d3,_,_Int*/
-'use strict';
+/* global d3,_,_Int,console */
+/* exported graphInit*/
 
 // http://bl.ocks.org/mbostock/7607999
 // http://jsfiddle.net/w2rfwokx/1/
@@ -7,7 +7,7 @@
 // https://groups.google.com/forum/#!topic/d3-js/d2ceKITfTx0
 
 function graphInit(nodeCount, diameter) {
-    /*jshint -W117 */
+    'use strict';
 
     var radius = diameter / 2,
         innerRadius = radius - 50,
@@ -17,33 +17,32 @@ function graphInit(nodeCount, diameter) {
                 children: []
             }
         },
-        data = createNodeData();
+        data = createNodeData(),
+        bundle = d3.layout.bundle(),
+        cluster = d3.layout.cluster() // use conections
+            .size([360, innerRadius]) // create ring
+            .sort(null)
+            .value(function(d) {
+                return d.size;
+            }),
+        lineDrawInstructions = d3.svg.line.radial()
+            .interpolate('bundle')
+            // .tension(0.85)
+            .radius(function(d) {
+                return d.y;
+            })
+            .angle(function(d) {
+                return d.x / 180 * Math.PI;
+            });
 
-    var cluster = d3.layout.cluster() // use conections
-        .size([360, innerRadius]) // create ring
-        .sort(null)
-        .value(function(d) {
-            return d.size;
-        });
-    var bundle = d3.layout.bundle();
-    var lineDrawInstructions = d3.svg.line.radial()
-        .interpolate('bundle')
-        // .tension(0.85)
-        .radius(function(d) {
-            return d.y;
-        })
-        .angle(function(d) {
-            return d.x / 180 * Math.PI;
-        });
-
-
-    // main svg element - represents whole graph drawing
+    // main svg element
     var svgElement = d3.select('.d3_graph').append('svg')
         .attr('width', diameter)
         .attr('height', diameter)
-        .attr('class', 'block-center')
+        .attr('class', 'u-block-center')
         .append('g') // main svg:graphics
         .attr('transform', 'translate(' + radius + ',' + radius + ')');
+    // draw shaded circle in background to better visualize cluster
     svgElement.append('circle')
         .attr('cx', 0)
         .attr('cy', 2)
@@ -53,13 +52,12 @@ function graphInit(nodeCount, diameter) {
         .style('stroke', 'gray')
         .style('stroke-width', 15);
 
-    var svgElementLinks = svgElement.append('g').attr('id', 'ls').selectAll('.link'); // links svg:graphics
-    var svgElementNodes = svgElement.append('g').selectAll('.node'); // nodes svg:graphics
-
-    var nodes = cluster.nodes(packageHierarchy(data)),
+    var svgElementLinks = svgElement.append('g').attr('id', 'ls').selectAll('.link'), // links svg:graphics
+        svgElementNodes = svgElement.append('g').selectAll('.node'), // nodes svg:graphics
+        nodes = cluster.nodes(packageHierarchy(data)),
         links = packageImports(nodes);
 
-    d3.select(self.frameElement).style('height', diameter + 'px');
+    // d3.select(self.frameElement).style('height', diameter + 'px');
     drawNodes();
     update();
 
@@ -113,7 +111,7 @@ function graphInit(nodeCount, diameter) {
                 return 'rotate(' + (d.x - 90) + ')translate(' + (d.y + 8) + ',0)rotate(' + (-d.x + 90) + ')translate(' + (r * -1) + ',' + (r * -1) + ')';
             },
             onClick = function(d) {
-                return 'nodeClicked(' + d.id + ')';
+                return 'model.nodeClicked(' + d.id + ')';
             };
 
         svgElementNodes = svgElementNodes
@@ -146,7 +144,6 @@ function graphInit(nodeCount, diameter) {
             .attr('onclick', onClick);
     }
 
-
     function createNodeData() {
         var data = [];
         for (var i = 0; i < nodeCount; i++) {
@@ -160,7 +157,6 @@ function graphInit(nodeCount, diameter) {
         return data;
     }
 
-    // Lazily construct the package hierarchy from class names.
     function packageHierarchy(classes) {
         classes.forEach(function(d) {
             nodeMap[d.name] = d;
@@ -171,7 +167,6 @@ function graphInit(nodeCount, diameter) {
         return nodeMap[''];
     }
 
-    // Return a list of imports for the given array of nodes.
     function packageImports(nodes) {
         var imports = [];
 

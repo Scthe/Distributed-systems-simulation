@@ -1,45 +1,25 @@
-// bower:scss
-// endbower
+@import "normalize.scss";
+@import "skeleton.scss";
 
-// layout
-$nav-bar-height: 80px;
-
-// colors
-$accent: #A149CD;
+/* some othe irritating defaukts not fixed by above libs*/
+label{ font-weight: normal; }
 
 ul, menu, dir {
 	list-style-type: none;
 	padding-left: 0px;
 }
 
+
+
+@import 'variables';
 @import 'utils';
-@import 'theme';
-@import 'graph';
+@import 'animation';
+@import 'z_depth';
+@import 'mixins';
 
-
-.header-panel{
-  height: $nav-bar-height;
-  position: relative;
-  z-index: 3;
-}
-
-.accented{
-	background-color: $accent !important
-}
-.btn-accented{
-	@extend .accented;
-	@extend .text-white;
-}
-
-
-.debug{
-	/*border: 1px solid red;*/
-}
-
-.raiseable {
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 6px rgba(0, 0, 0, 0.12);
-  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-}
-/*.raiseable:hover {*/
-  /*box-shadow: 0 6px 10px rgba(0, 0, 0, 0.23), 0 10px 30px rgba(0, 0, 0, 0.19);*/
-/*}*/
+@import 'components/header';
+@import 'components/content-layout';
+@import 'components/range';
+@import 'components/buttons';
+@import 'components/graph';
+@import 'components/github-ribbon';

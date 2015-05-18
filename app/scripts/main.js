@@ -1,24 +1,69 @@
-/*global graph, graphInit, _*/
-'use strict';
+/*global graph, graphInit, _, console, alert*/
 
 function _Int(n) {
+    'use strict';
     return Math.floor(n);
 }
 
-(function() {
+
+window.model = (function() {
+    'use strict';
 
     var model,
         sliderN = $('#N'),
         valueNText = $('#N-value'),
+        nRefreshButton = $('#N-refresh-button'),
         sliderMsgFail = $('#msg-fail'),
         valueMsgFailText = $('#msg-fail-value'),
         graphHtmlNode = $('.d3_graph'),
         graphSize = 500,
-        initN = 6,
-        initMsgFail = 50,
         initNodeVal = 5;
 
+    // init ui
+    sliderN.on('mousemove', function() {
+        valueNText.text(_Int($(this).val()));
+        updateRefreshButton();
+    });
+
+    sliderMsgFail.on('mousemove', function() {
+        valueMsgFailText.text(_Int($(this).val()) + '%');
+    });
+
+    // draw graph
+    reset();
+
+    // this will serve as a controller
+    return {
+        nodeClicked: nodeClicked,
+        reset: reset,
+        read: read,
+        ae: ae,
+        graph: graph
+    };
+
+
+    /** helper function  */
+    function setNode(id, val) {
+        graph.set(id, val);
+        model[id] = val;
+    }
+
+    /** helper function  */
+    function updateRefreshButton() {
+        var val = _Int(sliderN.val());
+        if (model && val !== model.length) {
+            nRefreshButton.addClass('slowly-rotating');
+        } else {
+            nRefreshButton.removeClass('slowly-rotating');
+        }
+    }
+
+    /** part of api */
     function reset(n) {
+        if (!n) {
+            n = sliderN.val();
+        }
+
         graphHtmlNode.empty();
         window.graph = graphInit(_Int(n), graphSize);
 
@@ -27,16 +72,11 @@ function _Int(n) {
             graph.set(index, vv);
             return vv;
         });
+        updateRefreshButton();
     }
 
-    function setNode(id, val) {
-        graph.set(id, val);
-        model[id] = val;
-    }
-
-    // GLOBALS
-
-    window.nodeClicked = function(id) {
+    /** part of api */
+    function nodeClicked(id) {
         console.log('[CLICK]: ' + id);
         var val = graph.get(id) + 1;
         setNode(id, val);
@@ -57,9 +97,10 @@ function _Int(n) {
             }).each(function(index) {
                 setNode(index, val);
             });
-    };
+    }
 
-    window.read = function() {
+    /** part of api */
+    function read() {
         console.log('[READ]');
         graph.clear();
         var readNodeId = _Int(Math.random() * model.length),
@@ -82,9 +123,10 @@ function _Int(n) {
             }, 0).value();
 
         alert(v);
-    };
+    }
 
-    window.ae = function() {
+    /** part of api */
+    function ae() {
         console.log('[AE]');
         // messages
         graph.clear();
@@ -108,45 +150,6 @@ function _Int(n) {
             // console.log(nodePos + ' + ' + delta + ' = ' + ind)
             return ind % model.length;
         }
-    };
+    }
 
-    window.addRandConnection = function() { // not used
-        graph.add(_Int(Math.random() * 8), _Int(Math.random() * 8));
-    };
-
-    $.material.init();
-    sliderN.noUiSlider({
-        start: initN,
-        step: 1,
-        connect: 'lower',
-        range: {
-            min: 5,
-            max: 16
-        }
-    }).on('slide', function() {
-        valueNText.text(_Int($(this).val()));
-    }).each(function() {
-        $(this).val(initN);
-    });
-
-    sliderMsgFail.noUiSlider({
-        start: initMsgFail,
-        step: 5,
-        connect: 'lower',
-        range: {
-            min: 0,
-            max: 100
-        }
-    }).on('slide', function() {
-        valueMsgFailText.text(_Int($(this).val()) + '%');
-    }).each(function() {
-        $(this).val(initMsgFail);
-    });
-
-    $('#graph-reload').click(function() {
-        reset(sliderN.val());
-    });
-
-
-    reset(initN, graphSize);
 })();

@@ -1,153 +1,80 @@
-ul{
-	list-style: none;
-	padding-left: 0;
+/*
+ * colors
+ */
+.accented{ background-color: $main-color-accent !important }
+.text-white{ color: white !important;}
+
+/*
+ * state indicators
+ */
+.u-activable{ cursor: pointer; }
+.u-no-select{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.clear {
-	clear: both;
+/*
+ * layout
+ */
+.u-clearfix  { clear: both; }
+.u-full-height { height: 100%;}
+.u-text-center{ text-align: center; }
+.u-block-center{
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-/* text sizes */
-.text-normal {
-	font-size: 1.2em;
-}
-.text-small {
-	font-size: 0.9em;
-}
-.text-smaller {
-	font-size: 0.7em;
-	margin: 0px;
-	padding: 0px;
-}
-.text-big {
-	font-size: 2em
-}
-
-/* overlays */
-.black-overlay {
-	color: white;
-	background-color: rgba(0, 0, 0, 0.3);
-}
-.black-overlay-light {
-	background-color: rgba(0, 0, 0, 0.13);
-}
-
-/* overflows */
-.hide-overflow{
-	overflow: hidden;
-	white-space:nowrap;
-	text-overflow:ellipsis;
-}
-.break-word-overflow{
-	overflow-wrap: break-word;
-}
-
-
-.activable{
-	cursor: pointer;
-}
-
-/* layout */
-.relative{
-	position: relative;
-}
-.absolute-center{
-	position: absolute;
-	top: 50%;
-	left: 50%;
-
-	.centered{
-		position: relative;
-		left: -50%;
-		top: -14px;
-	}
-}
-.absolute-bottom{
-	position: absolute;
-	bottom: 0px;
-}
-.absolute-center-h{
-	position: absolute;
-	left: 50%;
-
-	.centered{
-		position: relative;
-		left: -50%;
-	}
-}
-.fill-whole{
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	right: 0px;
-	bottom: 0px;
-}
-.fill-width{
-	width: 100%;
-}
-.min-fill-width{
-	min-width: 100%;
-}
-.fifth{
-	width: 19.5%;
-}
-.text-center{
-	text-align: center;
-}
-.block-center{
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
-}
-
-/* padding and margins */
-.no-padding{
-	padding: 0px !important;
-}
-.no-margin{
-	margin: 0px !important;
-}
-.no-borders{
-	border-style: none;
-}
+/*
+ * padding & margins & borders
+ */
+.no-padding{ padding: 0px !important; }
+.no-margins{ margin: 0px !important; }
+.no-borders{ border-style: none; }
 .raw-dim{
 	@extend .no-padding;
-	@extend .no-margin;
+	@extend .no-margins;
 	@extend .no-borders;
 }
-.std-paddings{
-	padding: 5px 15px;
+
+/*
+ * padding
+ */
+$padding-std: 5px;
+$padding-mid: 8px;
+$padding-huge: 15px;
+.std-paddings{ padding: $padding-std $padding-huge; }
+
+@mixin padding-horizontal($padding-size) {
+	padding-left: $padding-size;
+	padding-right: $padding-size;
 }
-/*padding-horizontal*/
-.small-padding-horizontal{
-	padding-left: 5px;
-	padding-right: 5px;
+.no-padding-h { @include padding-horizontal(0px); }
+.std-padding-h { @include padding-horizontal($padding-std); }
+.mid-padding-h { @include padding-horizontal($padding-mid); }
+.huge-padding-h{ @include padding-horizontal($padding-huge); }
+.std-paddings-square  { padding: $padding-std; }
+.mid-paddings-square{ padding: $padding-mid; }
+.huge-paddings-square { padding: $padding-huge; }
+
+@each $sh, $dir in (l,left),(r,right),(t,top),(b,bottom){
+  .std-padding-#{$sh} { padding-#{$dir}: $padding-std  !important; }
+  .mid-padding-#{$sh} { padding-#{$dir}: $padding-mid  !important; }
+  .huge-padding-#{$sh}{ padding-#{$dir}: $padding-huge !important; }
 }
-.mid-padding-horizontal{
-	padding-left: 8px;
-	padding-right: 8px;
-}
-.huge-padding-horizontal{
-	padding-left:  15px;
-	padding-right: 15px;
-}
-/*padding-square*/
-.std-paddings-square{
-	padding: 10px;
-}
-.huge-paddings-square{
-	padding: 15px;
-}
-.small-paddings-square{
-	padding: 5px;
-}
-/*margin-bottom*/
-.margin-bottom-small{
-	margin-bottom: 5px !important;
-}
-.margin-bottom-huge{
-	margin-bottom: 25px !important;
-}
-.margin-top-huge{
-	margin-top: 15px !important;
+
+/*
+ * margin
+ */
+$margin-std: 5px;
+$margin-mid: 12px;
+$margin-huge: 25px;
+@each $sh, $dir in (l,left),(r,right),(t,top),(b,bottom){
+  .std-margin-#{$sh} { margin-#{$dir}: $margin-std  !important; }
+  .mid-margin-#{$sh} { margin-#{$dir}: $margin-mid  !important; }
+  .huge-margin-#{$sh}{ margin-#{$dir}: $margin-huge !important; }
 }

@@ -1,0 +1,50 @@
+$github-ribbon-size: 150px;
+$github-ribbon-color: $main-color-accent;
+
+.github-ribbon{
+  position: absolute;
+  z-index: 9999;
+  overflow: hidden;
+  width: $github-ribbon-size;
+  height: $github-ribbon-size;
+  @extend .u-no-select;
+  /*top-right-corner*/
+  top: 0;
+  right: 0;
+}
+
+.github-ribbon--inner{
+  position: absolute;
+  padding: 2px 0;
+  background-color: $github-ribbon-color;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+  font: 700 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  z-index: 9999;
+  pointer-events: auto;
+
+  & a, & a:hover{
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 200px;
+    line-height: 20px;
+    display: inline-block;
+    padding: 2px 0;
+    /* stiching */
+    border-width: 1px 0;
+    border-style: dotted;
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+
+  /*top-right-corner*/
+  top:42px;
+  /*right: 43px;*/
+  transform: rotate(45deg);
+
+  @include media-between($sm-screen-width, $xl-screen-width){
+    top: 18px;
+    right: -70px;
+  }
+}

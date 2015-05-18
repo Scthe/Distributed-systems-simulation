@@ -1,6 +1,5 @@
-
 .node-bg {
-  fill: $accent;
+  fill: $main-color-accent;
 }
 .node-bg:hover {
   cursor: pointer;
@@ -20,7 +19,7 @@
 }
 
 .link-ok{
-  stroke: $accent;
+  stroke: $main-color-accent;
 }
 .link-fail{
   stroke: black;
