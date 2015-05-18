@@ -1,10 +1,16 @@
-Distributed Systems Simulation
+Distributed Systems Simulation [Demo](http://scthe.github.io/Distributed-systems-simulation/)
 ==============================
 
 Simulation presenting message failures in distributed system.
 
 ## How to run
 
+1. run `npm install`
+2. run `bower install`
+3. `grunt build`
+4. check the **dist** directory
+
+#### Dev mode (with live reloading)
 1. run `npm install`
 2. run `bower install`
 3. `grunt`
@@ -48,20 +54,13 @@ Read-repair is not implemented. It would require too much arrows.
 
 ## Used technology
 
-- [d3]
-- [bootstrap-material-design]
-- [nouislider]
-- [Jade]
-- [SCSS]
-- OOCSS
-- [underscore]
-- [jquery] 
+- [D3](http://d3js.org/)
+- [Skeleton](http://getskeleton.com/)
+- [Jade](http://jade-lang.com/)
+- [SCSS](http://sass-lang.com/)
+- [Underscore.js](http://underscorejs.org/)
+- [jQuery](https://jquery.com/)
+- [Bower](http://bower.io/)
+- [Grunt](http://gruntjs.com/)
 
 [capture]:capture.gif
-[bootstrap-material-design]:https://fezvrasta.github.io/bootstrap-material-design/
-[underscore]:http://underscorejs.org/
-[d3]:http://d3js.org/
-[nouislider]:http://refreshless.com/nouislider/
-[jquery]:https://jquery.com/
-[SCSS]:http://sass-lang.com/
-[Jade]:http://jade-lang.com/
